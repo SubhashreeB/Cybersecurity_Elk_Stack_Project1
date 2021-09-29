@@ -17,16 +17,17 @@ These files have been tested and used to generate a live ELK deployment on Azure
 
 Copy _Ansible Configuration file_ to your /etc/ansible directory.
 - Change remote_user inside the ansible.cfg file.
-    ![ansible_file](Images/ansible_file.png)
+![ansible_file](Images/ansible_file.png)
 - Inside hosts file include webserver and elk server ip addresses details as below:
 ![host_file](Images/hosts_file.png)
+
 Here webservers are Web1, Web2 and Web3 and elk is the Elk server.
 - Generate SSH public key from the container:
-~/.ssh#ssh-keygen
-~/.ssh#cat id_rsa-pub
+- ~/.ssh#ssh-keygen
+- ~/.ssh#cat id_rsa-pub
 - Assign the above generated public key along with username for Web1, Web2, Web3, Elk Virtual machine in Azure graphical user interface.
-	This can be done by going to Web1/Web2/Elk Server -> Reset Password -> Reset SSH Public Key.
-	![set_remote_pwd](Images/remote_pwd.png)
+This can be done by going to Web1/Web2/Elk Server -> Reset Password -> Reset SSH Public Key.
+![reset_pwd](Images/reset_pwd.png)
 
 This document contains the following details:
 - Description of the Topology
@@ -97,13 +98,17 @@ Ansible was used to automate configuration of the ELK machine. No configuration 
 - _What is the main advantage of automating configuration with Ansible?_
 We could deploy multiple servers easily and quickly without having to physically touch each server. 
 The playbook implements the following tasks:
-- _installs docker.io, pip3, and the docker module._
+
+- Install docker.io, pip3, and the docker module.
 ![Instaling_docker](Images/dockerio_install.png)
+
 - Increase the virtual memory to 262144 and ensure it does so automatically upon restarting the machine.
-- ![Increase elk virtal memory](Images/elk_increasememory.png)
-- uses sysctl module
+![Increase elk virtal memory](Images/elk_increasememory.png)
+
+- Uses sysctl module
 ![](Images/sysctl.png)
-- downloads and launches the docker container for elk server and set policy
+
+- Downloads and launches the docker container for elk server and set policy
 ![](Images/launch_elk)
 
 The following screenshot displays the result of running `docker ps` after successfully configuring the ELK instance.
@@ -136,9 +141,33 @@ SSH into the control node and follow the steps below:
 ![](Images/Kibana_home.png)
 
 - _Which file is the playbook?_
-- 
-- _Where do you copy it?_
-- _Which file do you update to make Ansible run the playbook on a specific machine? How do I specify which machine to install the ELK server on versus which to install Filebeat on?_
-- _Which URL do you navigate to in order to check that the ELK server is running?
+- The playbooks are:
+- [install-elk.yml](Ansible/install-elk.yml) - To install ELK Server
+- [install-dvwa.yml](Ansible/installDVWA.yml) - To install dvwa container on webservers
+- [filebeat-playbook.yml](Ansible/roles/filebeat-playbook.yml) - To install Filebeat on Elk Server and DVWA servers
+- [metricbeat-playbook.yml](Ansible/roles/metricbeat-playbook.yml) - To install Filebeat on Elk Server and DVWA servers
 
-_As a **Bonus**, provide the specific commands the user will need to run to download the playbook, update the files, etc._
+- _Where do you copy it?_
+- Path to copy is /etc/ansible inside container
+- _Which file do you update to make Ansible run the playbook on a specific machine? How do I specify which machine to install the ELK server on versus which to install Filebeat on?_
+- Edit /etc/ansible/hosts file and add a group name in square brackets and enter each node hostname or IP as below:
+[elk]
+
+10.1.0.5 ansible_python_interpreter=/usr/bin/python3
+- In the ansible playbook include host name as elk
+
+  hosts: elk
+
+- _Which URL do you navigate to in order to check that the ELK server is running?
+Run http://[elk_server_ip_address]/app/kibana 
+_Other Linux Command List :
+
+|  Publicly Accessible        | Allowed IP Addresses |
+|-----------------------------|----------------------|
+|sudo apt install docker.io.  | install docker application    |
+| sudo service docker start   |   start the docker application        |
+| sudo docker container list -a|locate your ansible container       |
+|systemctl status docker       | status of the docker application      |
+| sudo docker start <image-name>| starts the image specified      |
+| sudo docker attach <image-name>| effectively sshing into the ansible     |
+
