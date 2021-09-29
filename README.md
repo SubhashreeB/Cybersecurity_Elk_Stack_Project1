@@ -106,10 +106,11 @@ The playbook implements the following tasks:
 ![Increase elk virtal memory](Images/elk_increasememory.png)
 
 - Uses sysctl module
+
 ![](Images/sysctl.png)
 
 - Downloads and launches the docker container for elk server and set policy
-![](Images/launch_elk)
+![](Images/launch_elk.png)
 
 The following screenshot displays the result of running `docker ps` after successfully configuring the ELK instance.
 
@@ -160,7 +161,8 @@ SSH into the control node and follow the steps below:
 
 - _Which URL do you navigate to in order to check that the ELK server is running?
 Run http://[elk_server_ip_address]/app/kibana 
-_Other Linux Command List :
+
+-Other Linux Command List :
 
 |  Publicly Accessible        | Allowed IP Addresses |
 |-----------------------------|----------------------|
