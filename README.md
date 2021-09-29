@@ -17,16 +17,16 @@ These files have been tested and used to generate a live ELK deployment on Azure
 
 Copy _Ansible Configuration file_ to your /etc/ansible directory.
 - Change remote_user inside the ansible.cfg file.
-    ![4dd261da18bdee8cf746058e5d8d174e.png](:/d4056fe4bbd54c24bc6e7087a9854db0)
+    ![Images/ansible_file.png](:/ansible_file)
 - Inside hosts file include webserver and elk server ip addresses details as below:
-![b9660ab53f1c4768677ee037740781d7.png](:/bfafe561ec484622b6c9a3a51dac06ce)
+![Images/hosts_file.png](:/hosts_file)
 Here webservers are Web1, Web2 and Web3 and elk is the Elk server.
 - Generate SSH public key from the container:
 ~/.ssh#ssh-keygen
 ~/.ssh#cat id_rsa-pub
 - Assign the above generated public key along with username for Web1, Web2, Web3, Elk Virtual machine in Azure graphical user interface.
 	This can be done by going to Web1/Web2/Elk Server -> Reset Password -> Reset SSH Public Key.
-	![e9303c14bdf0ff04055b4b41058f5d10.png](:/b6118e15e1bb4130ab09646e084c706e)
+	![Images/remote_pwd.png](:/remote_pwd)
 
 This document contains the following details:
 - Description of the Topology
