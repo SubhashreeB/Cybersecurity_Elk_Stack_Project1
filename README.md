@@ -17,7 +17,7 @@ These files have been tested and used to generate a live ELK deployment on Azure
 
 Copy _Ansible Configuration file_ to your /etc/ansible directory.
 - Change remote_user inside the ansible.cfg file.
-    ![Images/ansible_file.png](:/ansible_file)
+    ![](:/ansible_file.png)
 - Inside hosts file include webserver and elk server ip addresses details as below:
 ![Images/hosts_file.png](:/hosts_file)
 Here webservers are Web1, Web2 and Web3 and elk is the Elk server.
