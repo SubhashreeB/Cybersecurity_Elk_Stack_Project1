@@ -2,7 +2,7 @@
 
 The files in this repository were used to configure the network depicted below.
 
-![Diagram/NetworkDiagram_Elkstack.drawio.png]
+![NetworkDiagram](Diagram/NetworkDiagram_Elkstack.drawio.png)
 
 These files have been tested and used to generate a live ELK deployment on Azure. They can be used to either recreate the entire deployment pictured above. Alternatively, select portions of the file may be used to install only certain pieces of it, such as Filebeat.
 
@@ -17,16 +17,16 @@ These files have been tested and used to generate a live ELK deployment on Azure
 
 Copy _Ansible Configuration file_ to your /etc/ansible directory.
 - Change remote_user inside the ansible.cfg file.
-    ![](:/ansible_file.png)
+    ![ansible_file](Images/ansible_file.png)
 - Inside hosts file include webserver and elk server ip addresses details as below:
-![Images/hosts_file.png](:/hosts_file)
+![host_file](Images/hosts_file.png)
 Here webservers are Web1, Web2 and Web3 and elk is the Elk server.
 - Generate SSH public key from the container:
 ~/.ssh#ssh-keygen
 ~/.ssh#cat id_rsa-pub
 - Assign the above generated public key along with username for Web1, Web2, Web3, Elk Virtual machine in Azure graphical user interface.
 	This can be done by going to Web1/Web2/Elk Server -> Reset Password -> Reset SSH Public Key.
-	![Images/remote_pwd.png](:/remote_pwd)
+	![set_remote_pwd](Images/remote_pwd.png)
 
 This document contains the following details:
 - Description of the Topology
@@ -98,17 +98,17 @@ Ansible was used to automate configuration of the ELK machine. No configuration 
 We could deploy multiple servers easily and quickly without having to physically touch each server. 
 The playbook implements the following tasks:
 - _installs docker.io, pip3, and the docker module._
-![Images/dockerio_install.png]
+![Instaling_docker](Images/dockerio_install.png)
 - Increase the virtual memory to 262144 and ensure it does so automatically upon restarting the machine.
-- ![Images/elk_increasememory.png]
+- ![Increase elk virtal memory](Images/elk_increasememory.png)
 - uses sysctl module
-![Images/sysctl.png]
+![](Images/sysctl.png)
 - downloads and launches the docker container for elk server and set policy
-![Images/launch_elk]
+![](Images/launch_elk)
 
 The following screenshot displays the result of running `docker ps` after successfully configuring the ELK instance.
 
-![Images/elkserver-status.png]
+![](Images/elkserver-status.png)
 
 ### Target Machines & Beats
 This ELK server is configured to monitor the following machines:
@@ -122,9 +122,9 @@ We have installed the following Beats on these machines:
 
 These Beats allow us to collect the following information from each machine:
 - _Filebeat watches for log files/locations and collect log events and send it to Elasticsearch._
-![Images/Filebeat_syslog.png]
+![](Images/Filebeat_syslog.png)
 - _Metricbeat records metrics and statistical data from the operating system and from services running on the server and pass it to elasticsearch._
-![Images/Metricbeat-logs.png]
+![](Images/Metricbeat-logs.png)
 
 ### Using the Playbook
 In order to use the playbook, you will need to have an Ansible control node already configured. Assuming you have such a control node provisioned: 
@@ -133,7 +133,7 @@ SSH into the control node and follow the steps below:
 - Copy the filebeat-config.yml and metricbeat-config.yml file to /etc/ansible/.
 - Update the hosts file to include ip address of elk server and web servers.
 - Run the playbook, and navigate to http://[elk_server_ip_address]/app/kibana to check that the installation worked as expected.
-![Images/Kibana_home.png]
+![](Images/Kibana_home.png)
 
 - _Which file is the playbook?_
 - 
